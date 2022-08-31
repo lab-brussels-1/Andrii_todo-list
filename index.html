@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./public/style.css">
+    <link rel="stylesheet" href="./public/todos.css">
     <title>Todo List</title>
 </head>
 <body>
-
-    <script src="./src/init.js"></script>    
+    <h1>To do list</h1>
+    <div id="container" class="container">     
+        <div class="btnDiv">
+        <form>
+            <p>Your tasks list</p>
+        <input type="text" id="userInput">
+        <button type="button" id="add-task" class="btnAdd">Add your task</button>
+        <button id="delete" type="submit" class="btnDelete">Delete</button>
+        </form>
+       </div>
+        <div id="taskList"></div>
+        </div>
+    <script src="./src/post.js"></script>    
+    <script src="./src/delete.js"></script>    
 </body>
 </html>
