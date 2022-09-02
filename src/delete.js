@@ -1,9 +1,8 @@
+//import { resetInput } from '../handlers/handlers.js';
 const deleteTodo = async (id) => {
-
   try {
-   
     const res = await fetch(`${"http://localhost:3000/todos"}/${id}`, {
-      method : "DELETE",
+      method: "DELETE",
     });
     // CHECKING RESPONSE
     if (res.status === 200) {
@@ -17,9 +16,29 @@ const deleteTodo = async (id) => {
   }
 };
 
+
+
+const deleteBtn = document.getElementById("delete");
+deleteBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  deleteTodo((inputID = document.getElementById("inputId").value));
+  deleteValidation();
+});
+
+const deleteValidation = () => {
+    if (inputId.value === "") {
+        const msg = document.getElementById("msg");
+      msg.innerHTML = "Pleas enter id of task to be deleted";
+    } else {
+      msg.innerHTML = "Task was deleted";
+    }
+  };
+
+/*
 const btnDelete = document.getElementById("delete");
 btnDelete.addEventListener("click", (e) => {
-    e.preventDefault();
-   deleteTodo(newTask = document.getElementById("userInput").value);
- 
+  e.preventDefault();
+  deleteTodo((newTask = document.getElementById("userInput").value));
+
 });
+*/
