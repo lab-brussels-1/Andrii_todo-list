@@ -1,9 +1,12 @@
 //import { resetInput } from '../handlers/handlers.js';
 const deleteTodo = async (id) => {
   try {
-    const res = await fetch(`${"http://localhost:3000/todos"}/${id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `${"https://my-json-server.typicode.com/andriivam/Andrii_todo-list/todos"}/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     // CHECKING RESPONSE
     if (res.status === 200) {
       const data = await res.json();

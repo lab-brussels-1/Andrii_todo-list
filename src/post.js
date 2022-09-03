@@ -6,13 +6,16 @@ const tasks = document.getElementById("tasks");
 const postTodo = async () => {
   try {
     const inputId = document.getElementById("inputId").value;
-    const res = await fetch("http://localhost:3000/todos", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ title: inputId, completed: false }),
-    });
+    const res = await fetch(
+      "https://my-json-server.typicode.com/andriivam/Andrii_todo-list/todos",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ title: inputId, completed: false }),
+      }
+    );
 
     // CHECKING RESPONSE
     if (res.status === 201) {
