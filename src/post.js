@@ -49,6 +49,39 @@ const postTodo = async () => {
   }
 };
 
+
+// function remove card from Todo list (do not remove data from server)
+const deleteTask = (e) => {
+  e.parentElement.parentElement.remove();
+  data.splice(e.parentElement.parentElement.id, 1);
+  data("data", JSON.stringify(data));
+};
+
+// function to clean our input area
+const resetInput = () => {
+  inputId.value = "";
+};
+
+
+
+// function to edit our task
+const editTask = (e) => {
+  let selectedTask = e.parentElement.parentElement;
+  inputId.value = selectedTask.children[0].innerHTML;
+ // deleteTask(deleteTodo(inputId.value));
+ updateTodo();
+};
+
+// adding eventListener to the button
+btnId.addEventListener("click", (e) => {
+  e.preventDefault();
+  inputValidation();
+  postTodo();
+  resetInput();
+});
+
+
+
 const updateTodo =  async (id) => 
 {
     try
@@ -96,36 +129,3 @@ const updateTodo =  async (id) =>
         console.error(err);
     }
 };
-
-// function remove card from Todo list (do not remove data from server)
-const deleteTask = (e) => {
-  e.parentElement.parentElement.remove();
-  data.splice(e.parentElement.parentElement.id, 1);
-  data("data", JSON.stringify(data));
-};
-
-// function to clean our input area
-const resetInput = () => {
-  inputId.value = "";
-};
-
-
-
-// function to edit our task
-const editTask = (e) => {
-  let selectedTask = e.parentElement.parentElement;
-  inputId.value = selectedTask.children[0].innerHTML;
- // deleteTask(deleteTodo(inputId.value));
- updateTodo();
-};
-
-// adding eventListener to the button
-btnId.addEventListener("click", (e) => {
-  e.preventDefault();
-  inputValidation();
-  postTodo();
-  resetInput();
-});
-
-
-
