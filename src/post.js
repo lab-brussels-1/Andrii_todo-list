@@ -1,63 +1,7 @@
 const btnId = document.getElementById("post");
+const inputId = document.getElementById("inputId");
 const msg = document.getElementById("msg");
 const tasks = document.getElementById("tasks");
-
-// adding eventListener to the button
-btnId.addEventListener("click", (e) => {
-    e.preventDefault();
-    inputValidation();
-    postTodo();
-  });
-
-// make sure that user give input
-const inputValidation = () => {
-    if (inputId.value === "") {
-      msg.innerHTML = "Pleas enter your task";
-    } else {
-      msg.innerHTML = "";
-      acceptData();
-    }
-  };
-  
-
-// store our data
-let data = {};
-
-// accept data and store our data
-const acceptData = () => {
-    data['text'] = inputId.value;
-    createTask();
-};
- 
-// display our tasks
-const createTask = () => {
-    tasks.innerHTML += `<div>
-    <span class="spanStyle">${data.text}</span>
-    <span class="options">
-      <i onClick = "editTask(this)" class="fa-solid fa-pen-to-square"></i>
-      <i onClick = "deleteTask(this)" class="fa-solid fa-trash-can"></i>
-    </span>
-    </div>`;
-    resetInput();
-    };
-
-// function to delete out task
-const deleteTask = (e) => {
-    e.parentElement.parentElement.remove();
-    }
-
-  
-  // function to edit our task
-  const editTask = (e) => {
-    let selectedTask = e.parentElement.parentElement;
-    inputId.value = selectedTask.children[0].innerHTML;
-    selectedTask.remove();
-  };
-
-  // function to clean our input area
-const resetInput = () => {
-    inputId.value = '';
-};
 
 const postTodo = async () => {
   try {
@@ -72,27 +16,40 @@ const postTodo = async () => {
 
     // CHECKING RESPONSE
     if (res.status === 201) {
-        const data = await res.json();
-        
+      const data = await res.json();
+      // DISPLAY OUR DATA
+      tasks.innerHTML += `<div>
+        <span class="spanStyle">
+      ${data.title}</span>
+        <span class="options">
+          <i onClick = "editTask(this)" class="fa-solid fa-pen-to-square"></i>
+          <i onClick = "deleteTask(this); deleteTask()" class="fa-solid fa-trash-can"></i>
+        </span>
+        </div>`;
+      console.log(data.title);
       return data;
     } else {
       console.log(`Error while posting todo with status : ${res.status}`);
       return false;
     }
-    
   } catch (err) {
     console.error(err);
   }
-  createTask();
 };
 
+// function remove card from Todo list (do not remove data from server)
+const deleteTask = (e) => {
+  e.parentElement.parentElement.remove(inputId.value);
+};
 
+// function to clean our input area
+const resetInput = () => {
+  inputId.value = "";
+};
 
-
-/*
-const addTaskBtn = document.getElementById("add-task");
-addTaskBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    postTodo();
+// adding eventListener to the button
+btnId.addEventListener("click", (e) => {
+  e.preventDefault();
+  postTodo();
+  resetInput();
 });
-*/
