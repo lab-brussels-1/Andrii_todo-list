@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./public/style.css">
-    <title>Todo List</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="./src/init.js"></script>    
-</body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./public/todos.css" />
+    <title>To do list</title>
+  </head>
+  <body>
+    <div class="container">
+      <h4 class="hTodo">To do list</h4>
+      <div id="addNew">
+        <form id="form">
+          <label
+            >Add New Task
+            <input id="inputId" class="input" type="text" />
+            <div id="msg" class="message"></div>
+          </label>
+        </form>
+        <div class="divBtn">
+          <button id="delete" class="deleteBtn">
+            <i class="fa-solid fa-delete-left"></i>Delete
+          </button>
+        </div>
+      </div>
+      <button id="post" class="postBtn" type="submit">Post</button>
+      <h5 class="text-center">Tasks</h5>
+      <div id="tasks"></div>
+    </div>
+    <script src="./src/post.js"></script>
+    <script src="./src/delete.js"></script>
+    <!-- <script src="./src/update.js"></script> -->
+    <script
+      src="https://kit.fontawesome.com/bd39983e7d.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
